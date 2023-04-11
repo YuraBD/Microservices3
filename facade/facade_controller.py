@@ -38,6 +38,9 @@ class FacadeController:
         return text
 
     async def post_req(self, msg: Message):
+        if not msg.msg:
+            return "Empty message"
+
         success = False
         print("Connecting to random port...")
         while not success:
@@ -48,8 +51,7 @@ class FacadeController:
                 success = True
             except (ConnectionError, MaxRetryError) as e:
                 pass
-        if not msg.msg:
-            return "Empty message"
+
         if logging_response.json() == "Empty message":
             return "Empty message"
 
