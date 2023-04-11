@@ -37,10 +37,11 @@ if __name__ == "__main__":
     parser.add_argument("--port", type=int, required=True, help="Port number (8004, 8005, or 8006)")
     args = parser.parse_args()
     logging_port = args.port
-    if logging_port in [8004, 8005, 8006]:
+    if logging_port in [8003, 8004, 8005]:
         print(f"Using port {logging_port}")
     else:
         print("Invalid port number. Please use 8004, 8005, or 8006.")
+        exit()
 
     logging_repository = LoggingRepository()
     logging_service = LoggingService(logging_repository)
